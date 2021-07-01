@@ -12,7 +12,7 @@
     "prettier:fix": "prettier --write \"src/**/(*.jsx|*.js|*.scss|*.css)\"",
     "test": "jest"
   },
-  "author": "Hong La <hongla@kms-technology.com> and Nhat Nam",
+  "author": "Hong La <hongla@kms-technology.com>",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.14.6",
