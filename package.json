@@ -53,8 +53,10 @@
     "webpack-dev-server": "3.11.2"
   },
   "dependencies": {
+    "dotenv-webpack": "^7.0.3",
     "react": "16",
     "react-dom": "16",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "uuid": "^8.3.2"
   }
 }
