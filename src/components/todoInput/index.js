@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ArrowDown from '@assets/icons/arrow-down.svg'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background.secondary};
@@ -8,8 +9,7 @@ const Wrapper = styled.div`
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
-  padding-left: 60px;
+  padding: 15px 20px;
   position: relative;
 `
 
@@ -17,10 +17,11 @@ const ToggleAll = styled.div`
   cursor: ${({ active }) => (active ? 'pointer' : 'default')};
   font-size: 22px;
   color: ${({ theme }) => theme.colors.typo.toggle};
-  position: absolute;
-  top: 50%;
-  left: 25px;
-  transform: translateY(-50%) rotate(90deg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 15px;
+  width: 30px;
 `
 
 const Input = styled.input`
@@ -40,6 +41,21 @@ const Input = styled.input`
   }
 `
 
+const Img = styled.img`
+  opacity: 0.3;
+  height: 25px;
+  width: 25px;
+  transition: opacity 0.3s ease-in-out;
+
+  ${({ theme }) =>
+    theme.active &&
+    `
+  &:hover {
+    opacity: 1;
+  }
+  `}
+`
+
 const onToggleAll = () => {
   console.log('Toggle All')
 }
@@ -51,7 +67,9 @@ const onInputChange = (event) => {
 const TodoInput = () => {
   return (
     <Wrapper>
-      <ToggleAll onClick={onToggleAll}>❯</ToggleAll>
+      <ToggleAll onClick={onToggleAll}>
+        <Img src={ArrowDown} alt='Toggle all tasks' />
+      </ToggleAll>
       <Input placeholder='What needs to be done?' onChange={onInputChange} />
     </Wrapper>
   )
