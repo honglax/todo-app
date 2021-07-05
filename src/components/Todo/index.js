@@ -8,7 +8,6 @@ import { sortTaskList } from '@utils/'
 import {
   getAllTasksService,
   addNewTaskService,
-  deleteTaskService,
   updateTaskService
 } from '@services/task'
 
@@ -30,7 +29,7 @@ const Todo = () => {
   }, [])
 
   useEffect(() => {
-    getFilteredTasks()
+    getFilteredTaskList()
     getIsCheckingAll()
   }, [tasks, filterType])
 
@@ -46,14 +45,14 @@ const Todo = () => {
     setIsCheckingAll(isCheckingAll)
   }
 
-  const getFilteredTasks = () => {
+  const getFilteredTaskList = () => {
     setFilteredTasks(filterListByType(tasks, filterType))
   }
 
-  const filterListByType = (taskList, filterType) =>
+  const filterListByType = (taskList, type) =>
     taskList.filter((task) => {
       const { isCompleted } = task
-      switch (filterType) {
+      switch (type) {
         case FILTER_TYPES['ACTIVE']:
           return isCompleted === false
         case FILTER_TYPES['COMPLETE']:
@@ -76,12 +75,12 @@ const Todo = () => {
   }
 
   const onToggleAll = () => {
-    const newIsCheckingAll = !isCheckingAll
     const updatedTaskList = tasks.map((task) => ({
       ...task,
-      isCompleted: newIsCheckingAll
+      isCompleted: !isCheckingAll,
+      updatedAt: new Date().toISOString()
     }))
-    setIsCheckingAll(newIsCheckingAll)
+    setIsCheckingAll(!isCheckingAll)
     handleTaskList(updatedTaskList)
     updateTaskService(updatedTaskList)
   }
@@ -97,7 +96,13 @@ const Todo = () => {
 
   const onToggleTaskStatus = (_id) => {
     const updatedTaskList = tasks.map((task) =>
-      task._id === _id ? { ...task, isCompleted: !task.isCompleted } : task
+      task._id === _id
+        ? {
+            ...task,
+            isCompleted: !task.isCompleted,
+            updatedAt: new Date().toISOString()
+          }
+        : task
     )
     handleTaskList(updatedTaskList)
     updateTaskService(updatedTaskList)
@@ -115,9 +120,9 @@ const Todo = () => {
   }
 
   const clearCompletedTask = () => {
-    const newTasks = tasks.filter(({ isCompleted }) => isCompleted === false)
-    handleTaskList(newTasks)
-    updateTaskService(newTasks)
+    const newTaskList = tasks.filter(({ isCompleted }) => isCompleted === false)
+    handleTaskList(newTaskList)
+    updateTaskService(newTaskList)
   }
 
   return (
