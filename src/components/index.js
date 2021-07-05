@@ -1,5 +1,3 @@
-import TodoInput from './todoInput/'
-import TodoFooter from './todoFooter/'
-import TodoList from './todoList/index'
+import Todo from './Todo'
 
-export { TodoInput, TodoFooter, TodoList }
+export { Todo }

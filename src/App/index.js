@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import { getAllTasks } from '@services/task'
-import { TodoInput, TodoFooter, TodoList } from '@components/'
+import { Todo } from '@components/'
 
 const Container = styled.div`
   display: flex;
@@ -30,25 +29,11 @@ const TodoWrapper = styled.div`
 `
 
 const App = () => {
-  const [allTasks, setAllTasks] = useState([])
-
-  useEffect(() => {
-    fetchTasks()
-  }, [])
-
-  const fetchTasks = async () => {
-    const tasks = await getAllTasks()
-    console.log(tasks)
-    setAllTasks(tasks)
-  }
-
   return (
     <Container>
       <Header>todos</Header>
       <TodoWrapper>
-        <TodoInput />
-        <TodoList />
-        <TodoFooter />
+        <Todo />
       </TodoWrapper>
     </Container>
   )

@@ -1,6 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ArrowDown from '@assets/icons/arrow-down.svg'
+import { NOOP_FUNC } from '@constants/'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background.secondary};
@@ -56,23 +58,29 @@ const Img = styled.img`
   `}
 `
 
-const onToggleAll = () => {
-  console.log('Toggle All')
-}
-
-const onInputChange = (event) => {
-  console.log('On Input change')
-}
-
-const TodoInput = () => {
+const TodoInput = ({ onToggleAll, onKeyPress }) => {
   return (
     <Wrapper>
       <ToggleAll onClick={onToggleAll}>
         <Img src={ArrowDown} alt='Toggle all tasks' />
       </ToggleAll>
-      <Input placeholder='What needs to be done?' onChange={onInputChange} />
+      <Input
+        autoFocus
+        placeholder='What needs to be done?'
+        onKeyPress={onKeyPress}
+      />
     </Wrapper>
   )
+}
+
+TodoInput.propTypes = {
+  onToggleAll: PropTypes.func,
+  onKeyPress: PropTypes.func
+}
+
+TodoInput.defaultProps = {
+  onToggleAll: NOOP_FUNC,
+  onKeyPress: NOOP_FUNC
 }
 
 export default TodoInput

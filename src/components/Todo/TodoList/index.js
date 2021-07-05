@@ -1,6 +1,9 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import CloseIcon from '@assets/icons/close-icon.svg'
+import CheckMarkIcon from '@assets/icons/check-mark.svg'
+import { NOOP_FUNC } from '@constants/'
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.background.secondary};
@@ -33,10 +36,18 @@ const TodoItem = styled.div`
 const Text = styled.div`
   font-size: 24px;
   line-height: 28px;
+  text-decoration: ${({ isCompleted }) => (isCompleted ? 'line-through' : '')};
+  opacity: ${({ isCompleted }) => (isCompleted ? '0.5' : 1)};
+  transition: all 0.2s ease-in-out;
   flex: 1;
 `
 
 const CheckBox = styled.div`
+  background-image: ${({ isCompleted, bgImg }) =>
+    isCompleted ? `url(${bgImg})` : 'none'};
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.colors.boxShadow.todoPrimary};
   border-radius: 50%;
@@ -58,36 +69,38 @@ const Img = styled.img`
   }
 `
 
-const TASKS = [
-  {
-    id: '1',
-    content: 'Wake up',
-    status: 'completed'
-  },
-  {
-    id: '2',
-    content: 'Breakfast',
-    status: 'active'
-  },
-  {
-    id: '3',
-    content: 'Go to school',
-    status: 'active'
-  }
-]
-
-const TodoList = () => {
+const TodoList = ({ tasks, onToggleTaskStatus, onDeleteTasks }) => {
   return (
     <Wrapper>
-      {TASKS.map((task) => (
-        <TodoItem key={task.id}>
-          <CheckBox />
-          <Text>{task.content}</Text>
-          <Img src={CloseIcon} alt='Delete task' />
+      {tasks.map(({ _id, content, isCompleted }) => (
+        <TodoItem key={_id}>
+          <CheckBox
+            isCompleted={isCompleted}
+            bgImg={CheckMarkIcon}
+            onClick={() => onToggleTaskStatus(_id)}
+          />
+          <Text isCompleted={isCompleted}>{content}</Text>
+          <Img
+            src={CloseIcon}
+            alt='Delete task'
+            onClick={() => onDeleteTasks(_id)}
+          />
         </TodoItem>
       ))}
     </Wrapper>
   )
+}
+
+TodoList.propTypes = {
+  tasks: PropTypes.array,
+  onToggleTaskStatus: PropTypes.func,
+  onDeleteTasks: PropTypes.func
+}
+
+TodoList.defaultProps = {
+  tasks: [],
+  onToggleTaskStatus: NOOP_FUNC,
+  onDeleteTasks: NOOP_FUNC
 }
 
 export default TodoList
