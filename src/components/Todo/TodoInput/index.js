@@ -75,12 +75,12 @@ const TodoInput = ({ onToggleAll, onKeyPress }) => {
 
 TodoInput.propTypes = {
   onToggleAll: PropTypes.func,
-  onKeyPress: PropTypes.func
+  onKeyPress: PropTypes.func,
 }
 
 TodoInput.defaultProps = {
   onToggleAll: NOOP_FUNC,
-  onKeyPress: NOOP_FUNC
+  onKeyPress: NOOP_FUNC,
 }
 
 export default TodoInput

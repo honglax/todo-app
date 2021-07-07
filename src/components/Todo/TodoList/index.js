@@ -94,13 +94,13 @@ const TodoList = ({ tasks, onToggleTaskStatus, onDeleteTasks }) => {
 TodoList.propTypes = {
   tasks: PropTypes.array,
   onToggleTaskStatus: PropTypes.func,
-  onDeleteTasks: PropTypes.func
+  onDeleteTasks: PropTypes.func,
 }
 
 TodoList.defaultProps = {
   tasks: [],
   onToggleTaskStatus: NOOP_FUNC,
-  onDeleteTasks: NOOP_FUNC
+  onDeleteTasks: NOOP_FUNC,
 }
 
 export default TodoList

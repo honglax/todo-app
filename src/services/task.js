@@ -19,7 +19,7 @@ export const addNewTaskService = (content) => {
     content,
     isCompleted: false,
     createdAt: today,
-    updatedAt: today
+    updatedAt: today,
   }
 
   setLocalStorageItem(LOCAL_STORAGE_ITEM, [...currentTaskList, newTask])

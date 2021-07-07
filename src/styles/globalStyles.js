@@ -19,7 +19,7 @@ export const GlobalStyles = createGlobalStyle`
   #root {
     background-color: ${({ theme }) => theme.colors.background.primary};
     color: ${({ theme }) => theme};
-    font-family: 'Lato', 'san-serif';
+    font-family: 'Source Sans Pro', sans-serif;
     display: flex;
     flex-flow: row nowrap;
     align-items: flex-start;

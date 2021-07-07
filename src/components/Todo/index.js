@@ -8,7 +8,7 @@ import { sortTaskList } from '@utils/'
 import {
   getAllTasksService,
   addNewTaskService,
-  updateTaskService
+  updateTaskService,
 } from '@services/task'
 
 const Wrapper = styled.div`
@@ -40,7 +40,7 @@ const Todo = () => {
 
   const getIsCheckingAll = () => {
     const isCheckingAll = !tasks.find(
-      ({ isCompleted }) => isCompleted === false
+      ({ isCompleted }) => isCompleted === false,
     )
     setIsCheckingAll(isCheckingAll)
   }
@@ -78,7 +78,7 @@ const Todo = () => {
     const updatedTaskList = tasks.map((task) => ({
       ...task,
       isCompleted: !isCheckingAll,
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
     }))
     setIsCheckingAll(!isCheckingAll)
     handleTaskList(updatedTaskList)
@@ -100,9 +100,9 @@ const Todo = () => {
         ? {
             ...task,
             isCompleted: !task.isCompleted,
-            updatedAt: new Date().toISOString()
+            updatedAt: new Date().toISOString(),
           }
-        : task
+        : task,
     )
     handleTaskList(updatedTaskList)
     updateTaskService(updatedTaskList)

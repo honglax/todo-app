@@ -8,7 +8,7 @@ const Container = styled.div`
   width: 550px;
 
   * {
-    font-family: 'Lato';
+    font-family: 'Source Sans Pro', sans-serif;
   }
 `
 

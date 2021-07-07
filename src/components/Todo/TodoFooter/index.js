@@ -33,8 +33,8 @@ const Wrapper = styled.div`
     overflow: hidden;
     box-shadow: ${({
       theme: {
-        colors: { boxShadow }
-      }
+        colors: { boxShadow },
+      },
     }) => `
       0 1px 1px ${boxShadow.todoPrimary}, 
       0 8px 0 -3px ${boxShadow.todoFooter}, 
@@ -79,7 +79,7 @@ const TodoFooter = ({
   tasks,
   filterType,
   onFilterTasks,
-  clearCompletedTask
+  clearCompletedTask,
 }) => {
   const [activeTasks, setActiveTasks] = useState([])
   const [completedTasks, setCompletedTasks] = useState([])
@@ -135,14 +135,14 @@ TodoFooter.propTypes = {
   tasks: PropTypes.array,
   filterType: PropTypes.string,
   onFilterTasks: PropTypes.func,
-  clearCompletedTask: PropTypes.func
+  clearCompletedTask: PropTypes.func,
 }
 
 TodoFooter.defaultProps = {
   tasks: [],
   filterType: FILTER_TYPES['ALL'],
   onFilterTasks: NOOP_FUNC,
-  clearCompletedTask: NOOP_FUNC
+  clearCompletedTask: NOOP_FUNC,
 }
 
 export default TodoFooter
